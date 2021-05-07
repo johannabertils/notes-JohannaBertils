@@ -64,7 +64,6 @@ router.post("/check", function (req, res) {
   let sql = `SELECT * FROM notes WHERE id=${docId}`;
   console.log(sql);
 
-  // let sql = `SELECT * FROM notes WHERE id='docId'`
   req.app.locals.con.query(sql, function (err, result) {
     if (err) {
       console.log(err);
@@ -72,6 +71,38 @@ router.post("/check", function (req, res) {
     console.log("result", result);
     res.json(result);
   })
+
+  router.post("/update", function (req, res) {
+    let newText = req.body.updateMainText;
+    let newHeading = req.body.updateHeading;
+    let documentId = req.body.documentId;
+
+    console.log(newHeading);
+    console.log(newText);
+    console.log(documentId);
+    // res.json("saved");
+  
+    // req.app.locals.con.connect(function (err) {
+    //   if (err) {
+    //     console.log(err);
+    //   }
+  
+    //   let saveHeading = newHeading;
+    //   let saveMainText = newText;
+  
+    //   let sql = `INSERT INTO notes (heading, mainText) VALUES ("${saveHeading}", "${saveMainText}")`
+  
+    //   req.app.locals.con.query(sql, function (err, result) {
+    //     if (err) {
+    //       console.log(err);
+    //     }
+    //     console.log("result", result);
+    //   })
+  
+    // });
+  
+  });
+ 
 
 
 

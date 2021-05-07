@@ -94,7 +94,7 @@ function showDoc(result) {
 function editDocPage(id, text) {
     document.getElementById("newDoc").hidden = true;
     let editBtn =`<div><button id="editBtn">Redigera</button></div>`;
-    root.insertAdjacentHTML("afterend", editBtn);
+    root.insertAdjacentHTML("beforebegin", editBtn);
 
 
     console.log("id" + id);
@@ -112,11 +112,13 @@ function editDocPage(id, text) {
             console.log(result[0].mainText.toString());
             let showingDoc = `<div class ="showDoc">` + result[0].mainText.toString() + `</div>`;
             let doc = result[0].mainText.toString();
+            let documentId = result[0].id.toString();
+            let heading = result[0].heading.toString()
             root.insertAdjacentHTML("beforebegin", showingDoc);
 
             document.getElementById("editBtn").addEventListener("click", function(){
                 console.log("click");
-                updatePage();
+                updateDocumentPage(doc, documentId , heading);
          
              })
         })
@@ -125,19 +127,15 @@ function editDocPage(id, text) {
      
 }
 
-function updatePage(){
+function updateDocumentPage(doc, documentId, heading){
 
-    let backBtn = `<div id="backBtn"><button id="goBackBtn">Tillbaka</button></div>`;
-    // let heading = `<div id="heading"><input id="head">Namn på dokument</input></div>`
-    root.insertAdjacentHTML("beforebegin", backBtn);
-
+    console.log(doc);
+    console.log(documentId);
+    console.log(heading);
     document.getElementById("editArea").hidden = false;
     document.getElementById("logOutbtn").hidden = false;
     document.getElementById("newDoc").hidden = true;
-
-    goBackBtn.addEventListener("click", function () {
-        loggedInPage()
-    });
+    document.getElementById("editBtn").hidden = true;
 
     tinymce.init({
         selector: "#textContent",
@@ -150,24 +148,32 @@ function updatePage(){
     })
 
     document.getElementById("textContent").value= doc;
+    head.value += heading;
 
-    // click on save to create document
-    document.getElementById("saveBtn").addEventListener("click", function () {
+
+    // click on save to update document
+    document.getElementById("saveBtn").addEventListener("click", function() {
         console.log(document.getElementById("textContent").value);
         document.getElementById("textResult").innerHTML = document.getElementById("textContent").value;
-        mainText = textContent.value;
-        console.log(mainText);
+        updateMainText = textContent.value;
+        console.log(updateMainText);
+        
+        updateDocumentPage(documentId)
+        console.log(documentId);
 
-        let heading = document.getElementById("head").value;
+    
+        let updateHeading = head.value;
+        console.log(updateHeading);
 
-        fetch("http://localhost:3010/users/new", {
+        fetch("http://localhost:3010/users/update", {
             method: "post",
             headers: {
                 "content-Type": "application/json"
             },
             body: JSON.stringify({
-                mainText,
-                heading
+                updateMainText,
+                updateHeading, 
+                documentId
             })
         }).then((res) => res.json())
             .then(function (data) {
@@ -205,8 +211,6 @@ function newDocPage() {
             })
         }
     })
-
-    document.getElementById("textContent").value= doc;
 
     // click on save to create document
     document.getElementById("saveBtn").addEventListener("click", function () {
