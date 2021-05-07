@@ -43,7 +43,7 @@ router.get('/data', function (req, res, next) {
       console.log(err);
     }
 
-    let sql = `SELECT * FROM notes`
+    let sql = `SELECT * FROM notes`;
 
     req.app.locals.con.query(sql, function (err, result) {
       if (err) {
@@ -61,7 +61,8 @@ router.post("/check", function (req, res) {
   console.log("working");
   let docId = req.body.id;
   console.log(docId);
-  let sql = "SELECT * FROM notes WHERE id= 18";
+  let sql = `SELECT * FROM notes WHERE id=${docId}`;
+  console.log(sql);
 
   // let sql = `SELECT * FROM notes WHERE id='docId'`
   req.app.locals.con.query(sql, function (err, result) {

@@ -1,0 +1,11 @@
+.root {
+    max-width: 600px;
+    text-align: center;
+
+}
+
+.showDoc {
+    width: 500px;
+    height: 500px;
+    border: 1px black solid;
+}

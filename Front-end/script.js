@@ -93,6 +93,9 @@ function showDoc(result) {
 
 function editDocPage(id, text) {
     document.getElementById("newDoc").hidden = true;
+    let editBtn =`<div><button id="editBtn">Redigera</button></div>`;
+    root.insertAdjacentHTML("afterend", editBtn);
+
 
     console.log("id" + id);
     fetch("http://localhost:3010/users/check", {
@@ -108,8 +111,73 @@ function editDocPage(id, text) {
             console.log(result);
             console.log(result[0].mainText.toString());
             let showingDoc = `<div class ="showDoc">` + result[0].mainText.toString() + `</div>`;
+            let doc = result[0].mainText.toString();
             root.insertAdjacentHTML("beforebegin", showingDoc);
+
+            document.getElementById("editBtn").addEventListener("click", function(){
+                console.log("click");
+                updatePage();
+         
+             })
         })
+
+       
+     
+}
+
+function updatePage(){
+
+    let backBtn = `<div id="backBtn"><button id="goBackBtn">Tillbaka</button></div>`;
+    // let heading = `<div id="heading"><input id="head">Namn på dokument</input></div>`
+    root.insertAdjacentHTML("beforebegin", backBtn);
+
+    document.getElementById("editArea").hidden = false;
+    document.getElementById("logOutbtn").hidden = false;
+    document.getElementById("newDoc").hidden = true;
+
+    goBackBtn.addEventListener("click", function () {
+        loggedInPage()
+    });
+
+    tinymce.init({
+        selector: "#textContent",
+
+        setup: function (editor) {
+            editor.on("change", function () {
+                editor.save();
+            })
+        }
+    })
+
+    document.getElementById("textContent").value= doc;
+
+    // click on save to create document
+    document.getElementById("saveBtn").addEventListener("click", function () {
+        console.log(document.getElementById("textContent").value);
+        document.getElementById("textResult").innerHTML = document.getElementById("textContent").value;
+        mainText = textContent.value;
+        console.log(mainText);
+
+        let heading = document.getElementById("head").value;
+
+        fetch("http://localhost:3010/users/new", {
+            method: "post",
+            headers: {
+                "content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                mainText,
+                heading
+            })
+        }).then((res) => res.json())
+            .then(function (data) {
+                console.log(data);
+
+                if (data == "saved") {
+                    root.insertAdjacentHTML(`afterend`, `<div class="savedText" id="savedText"><p>Dokument sparat</p></div>`);
+                }
+            })
+    })
 }
 
 // create new document page
@@ -137,6 +205,8 @@ function newDocPage() {
             })
         }
     })
+
+    document.getElementById("textContent").value= doc;
 
     // click on save to create document
     document.getElementById("saveBtn").addEventListener("click", function () {
