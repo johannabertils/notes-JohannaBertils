@@ -1,5 +1,5 @@
 
-# Installations
+# Installations:
 
 ## Back-end
 
@@ -31,8 +31,9 @@ npm init
 npm i tinymce
 ```
 
-# How to
+# How to:
 
+I front-end
 ```bash
- localhost:3010 -> log in with username "admin" and password "admin".
+ Open index.html with liveserver: "admin" and password "admin".
 ```

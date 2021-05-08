@@ -139,6 +139,8 @@ function updateDocumentPage(doc, documentId, heading) {
 
     tinymce.init({
         selector: "#textContent",
+        plugins: "code",
+        toolbar: "undo redo | styleselect |  bold italic | alignleft alignright | code",
 
         setup: function (editor) {
             editor.on("change", function () {
