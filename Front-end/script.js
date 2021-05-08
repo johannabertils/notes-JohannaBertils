@@ -38,7 +38,7 @@ function loggedInPage() {
 
     let loggedInContent = `<div id="newDoc">
     <div><h1> Välkommen, du är nu inloggad</h1></div>
-    <div><button id="newDocBtn">Skapa nytt dokument</button></div>
+    <div><button class="newdDocBtn" id="newDocBtn">Skapa nytt dokument</button></div>
     <div><h2> Dina skapade dokument</h2></div>
     </div>`;
 
@@ -74,8 +74,9 @@ function showDoc(result) {
         let id = result[data].id;
         let text = result[data].mainText;
         console.log(result[data].mainText);
-
-        listDocs = `<div id="list"><li>` + result[data].heading + `<button value="` + result[data].id + `" id="showBtn">Visa dokument</button></li></div>`;
+        listDocs = `<div class="listdiv" id="list">`
+        listDocs += `<li class="listli">` + result[data].heading + `<button class="listBtn"value="` + result[data].id + `" id="showBtn">Visa dokument</button></li>`;
+        listDocs += `</div>`
         root.insertAdjacentHTML("afterend", listDocs);
         console.log(id);
 
@@ -93,8 +94,10 @@ function showDoc(result) {
 
 function editDocPage(id, text) {
     document.getElementById("newDoc").hidden = true;
-    let editBtn =`<div><button id="editBtn">Redigera</button></div>`;
+    let editBtn = `<div><button id="editBtn">Redigera</button></div>`;
     root.insertAdjacentHTML("beforebegin", editBtn);
+    document.getElementById("list").hidden = true;
+
 
 
     console.log("id" + id);
@@ -116,18 +119,18 @@ function editDocPage(id, text) {
             let heading = result[0].heading.toString()
             root.insertAdjacentHTML("beforebegin", showingDoc);
 
-            document.getElementById("editBtn").addEventListener("click", function(){
+            document.getElementById("editBtn").addEventListener("click", function () {
                 console.log("click");
-                updateDocumentPage(doc, documentId , heading);
-         
-             })
+                updateDocumentPage(doc, documentId, heading);
+
+            })
         })
 
-       
-     
+
+
 }
 
-function updateDocumentPage(doc, documentId, heading){
+function updateDocumentPage(doc, documentId, heading) {
 
     console.log(doc);
     console.log(documentId);
@@ -147,21 +150,21 @@ function updateDocumentPage(doc, documentId, heading){
         }
     })
 
-    document.getElementById("textContent").value= doc;
+    document.getElementById("textContent").value = doc;
     head.value += heading;
 
 
     // click on save to update document
-    document.getElementById("saveBtn").addEventListener("click", function() {
+    document.getElementById("saveBtn").addEventListener("click", function () {
         console.log(document.getElementById("textContent").value);
         document.getElementById("textResult").innerHTML = document.getElementById("textContent").value;
         updateMainText = textContent.value;
         console.log(updateMainText);
-        
+
         updateDocumentPage(documentId)
         console.log(documentId);
 
-    
+
         let updateHeading = head.value;
         console.log(updateHeading);
 
@@ -172,15 +175,14 @@ function updateDocumentPage(doc, documentId, heading){
             },
             body: JSON.stringify({
                 updateMainText,
-                updateHeading, 
+                updateHeading,
                 documentId
             })
         }).then((res) => res.json())
             .then(function (data) {
                 console.log(data);
-
-                if (data == "saved") {
-                    root.insertAdjacentHTML(`afterend`, `<div class="savedText" id="savedText"><p>Dokument sparat</p></div>`);
+                if (data = "Updated") {
+                    root.insertAdjacentHTML(`afterend`, `<div class="savedText" id="savedText"><p>Dokument updaterat och sparat</p></div>`);
                 }
             })
     })

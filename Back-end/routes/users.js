@@ -77,50 +77,22 @@ router.post("/check", function (req, res) {
     let newHeading = req.body.updateHeading;
     let documentId = req.body.documentId;
 
-    console.log(newHeading);
-    console.log(newText);
-    console.log(documentId);
-    // res.json("saved");
-  
-    // req.app.locals.con.connect(function (err) {
-    //   if (err) {
-    //     console.log(err);
-    //   }
-  
-    //   let saveHeading = newHeading;
-    //   let saveMainText = newText;
-  
-    //   let sql = `INSERT INTO notes (heading, mainText) VALUES ("${saveHeading}", "${saveMainText}")`
-  
-    //   req.app.locals.con.query(sql, function (err, result) {
-    //     if (err) {
-    //       console.log(err);
-    //     }
-    //     console.log("result", result);
-    //   })
-  
-    // });
-  
+    console.log("new" + newHeading);
+    console.log("new" + newText);
+    console.log("new" + documentId);
+
+    let sql = `UPDATE notes SET heading= "${newHeading}", mainText= "${newText}" WHERE id=${docId}`;
+
+    req.app.locals.con.query(sql, function (err, result) {
+      if (err) {
+        console.log(err);
+      }
+      console.log("result", result);
+      res.json("Updated");
+    })
+
   });
- 
 
-
-
-
-
-  // const query = usersModel.findOne({ '_id': id });
-
-  // query.select('_id subscribe');
-
-  // query.exec(function (err, user) {
-  //     if (user.subscribe === true) {
-  //         res.json("true");
-  //         console.log("user is subscribing");
-  //     } else {
-  //         res.json("false");
-  //         console.log("user is not subscribing");
-  //     }
-  // });
 });
 
 module.exports = router;

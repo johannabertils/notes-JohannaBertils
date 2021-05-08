@@ -9,3 +9,37 @@
     height: 500px;
     border: 1px black solid;
 }
+
+.listdiv{
+    max-width: 600px;
+    margin: 20px;
+    border-bottom: 1px solid black;
+}
+
+.listli{
+    list-style-type: none;
+    font-size: 20px;
+}
+
+.listBtn{
+background-color: black;
+color: white;
+font-size: 15px; 
+padding: 10px 10px;
+text-decoration: none;
+border: none;
+}
+
+.listBtn:hover{
+    background-color: grey; 
+    cursor: pointer;
+  
+}
+
+.newdDocBtn{
+    background-color: white;
+color: black;
+font-size: 15px; 
+padding: 10px 10px;
+border: solid black 2px;
+}
