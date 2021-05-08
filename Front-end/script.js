@@ -3,7 +3,6 @@ let root = document.getElementById("root");
 let editArea = document.getElementById("editArea");
 
 let listDocs = document.createElement("div");
-listDocs.setAttribute("id", "entirList");
 
 // Startpage
 
@@ -240,6 +239,7 @@ function newDocPage() {
     })
 }
 
+// Go back to previous page button
 function goBack() {
     goBackBtn.addEventListener("click", function () {
         console.log("click");

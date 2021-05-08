@@ -31,9 +31,7 @@ router.post("/new", function (req, res) {
       }
       console.log("result", result);
     })
-
   });
-
 });
 
 router.get('/data', function (req, res, next) {
@@ -52,9 +50,7 @@ router.get('/data', function (req, res, next) {
       console.log("result", result);
       res.json(result);
     })
-
   });
-
 });
 
 router.post("/check", function (req, res) {
