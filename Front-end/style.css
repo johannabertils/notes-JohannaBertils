@@ -7,39 +7,118 @@
 .showDoc {
     width: 500px;
     height: 500px;
+    padding: 30px;
     border: 1px black solid;
 }
 
-.listdiv{
+.listdiv {
     max-width: 600px;
     margin: 20px;
     border-bottom: 1px solid black;
 }
 
-.listli{
+.listli {
     list-style-type: none;
     font-size: 20px;
 }
 
-.listBtn{
-background-color: black;
-color: white;
-font-size: 15px; 
-padding: 10px 10px;
-text-decoration: none;
-border: none;
+.listBtn {
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    padding: 10px 10px;
+    text-decoration: none;
+    border: none;
+    float: right;
+    
 }
 
-.listBtn:hover{
-    background-color: grey; 
+.listBtn:hover {
+    background-color: grey;
     cursor: pointer;
-  
 }
 
-.newdDocBtn{
+.newdDocBtn {
     background-color: white;
-color: black;
-font-size: 15px; 
-padding: 10px 10px;
-border: solid black 2px;
+    color: black;
+    font-size: 15px;
+    padding: 10px 10px;
+    border: solid black 2px;
+}
+
+.newdDocBtn:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+.heading {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 8px;
+    box-sizing: border-box;
+}
+
+.logOutbtn {
+    background-color: white;
+    color: black;
+    font-size: 10px;
+    padding: 5px 5px;
+    border: solid black 2px;
+    width: 70px;
+    cursor: pointer;
+    position: relative;
+    margin-left: 5px; 
+    float: left;
+}
+
+.goBackBtn {
+    background-color: white;
+    color: black;
+    font-size: 10px;
+    padding: 5px 5px;
+    border: solid black 2px;
+    width: 70px;
+    margin-top: 5px;
+    cursor: pointer;
+    margin-left: 5px; 
+    float: left;
+}
+
+.loginfield {
+    padding: 12px 20px;
+    margin: 8px 8px;
+    box-sizing: border-box;
+}
+
+.loginbtn {
+    background-color: white;
+    color: black;
+    font-size: 10px;
+    padding: 5px 5px;
+    border: solid black 2px;
+    width: 70px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.header {
+    max-width: 500px;
+    text-align: center;
+}
+
+h2 {
+    max-width: 600px;
+    font-size: 20px;
+}
+
+.editBtn{
+    background-color: white;
+    color: black;
+    font-size: 10px;
+    padding: 5px 5px;
+    border: solid black 2px;
+    width: 70px;
+    margin-top: 5px;
+    cursor: pointer;
+    margin-left: 5px;
 }

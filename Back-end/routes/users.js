@@ -81,7 +81,7 @@ router.post("/check", function (req, res) {
     console.log("new" + newText);
     console.log("new" + documentId);
 
-    let sql = `UPDATE notes SET heading= "${newHeading}", mainText= "${newText}" WHERE id=${docId}`;
+    let sql = `UPDATE notes SET heading= "${newHeading}", mainText= "${newText}" WHERE id="${documentId}"`;
 
     req.app.locals.con.query(sql, function (err, result) {
       if (err) {
